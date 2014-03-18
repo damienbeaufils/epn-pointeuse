@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>org.csrelais59.epn</groupId>
+    <artifactId>pointeuse</artifactId>
+    <packaging>grails-app</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <inceptionYear>2014</inceptionYear>
+
+    <name>Pointeuse</name>
+    <url>http://www.csrelais59.org/epn/</url>
+
+    <properties>
+        <java.version>1.7</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <grails.version>2.3.7</grails.version>
+        <!-- Grails 2.3.7 == Spring 3.2.7 -->
+        <spring.version>3.2.7.RELEASE</spring.version>
+        <!-- Grails 2.3.7 == Groovy 2.1.9 -->
+        <groovy.version>2.1.9</groovy.version>
+        <!-- Grails plugins -->
+        <tomcat-grails-plugin.version>7.0.52.1</tomcat-grails-plugin.version>
+        <hibernate4-grails-plugin.version>4.3.4.1</hibernate4-grails-plugin.version>
+
+        <h2.version>1.3.175</h2.version>
+        <mysql-connector.version>5.1.29</mysql-connector.version>
+    </properties>
+
+    <scm>
+        <url>https://github.com/damienbeaufils/epn-pointeuse</url>
+        <connection>scm:git:ssh://git@github.com/damienbeaufils/epn-pointeuse.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/damienbeaufils/epn-pointeuse.git</developerConnection>
+    </scm>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.codehaus.groovy</groupId>
+            <artifactId>groovy-all</artifactId>
+            <version>${groovy.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.grails</groupId>
+            <artifactId>grails-dependencies</artifactId>
+            <version>${grails.version}</version>
+            <type>pom</type>
+        </dependency>
+
+        <dependency>
+            <groupId>org.grails</groupId>
+            <artifactId>grails-plugin-testing</artifactId>
+            <version>${grails.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.grails.plugins</groupId>
+            <artifactId>tomcat</artifactId>
+            <version>${tomcat-grails-plugin.version}</version>
+            <type>zip</type>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.grails.plugins</groupId>
+            <artifactId>hibernate4</artifactId>
+            <version>${hibernate4-grails-plugin.version}</version>
+            <type>zip</type>
+            <scope>compile</scope>
+        </dependency>
+
+        <!--<dependency>-->
+        <!--<groupId>org.grails.plugins</groupId>-->
+        <!--<artifactId>scaffolding</artifactId>-->
+        <!--<version>2.0.3</version>-->
+        <!--<type>zip</type>-->
+        <!--<scope>compile</scope>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+        <!--<groupId>org.grails.plugins</groupId>-->
+        <!--<artifactId>jquery</artifactId>-->
+        <!--<version>1.11.0.1</version>-->
+        <!--<type>zip</type>-->
+        <!--<scope>runtime</scope>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+        <!--<groupId>org.grails.plugins</groupId>-->
+        <!--<artifactId>resources</artifactId>-->
+        <!--<version>1.2.7</version>-->
+        <!--<type>zip</type>-->
+        <!--<scope>runtime</scope>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+        <!--<groupId>org.grails.plugins</groupId>-->
+        <!--<artifactId>database-migration</artifactId>-->
+        <!--<version>1.3.8</version>-->
+        <!--<type>zip</type>-->
+        <!--<scope>runtime</scope>-->
+        <!--</dependency>-->
+
+        <!--<dependency>-->
+        <!--<groupId>org.grails.plugins</groupId>-->
+        <!--<artifactId>cache</artifactId>-->
+        <!--<version>1.1.1</version>-->
+        <!--<type>zip</type>-->
+        <!--<scope>runtime</scope>-->
+        <!--</dependency>-->
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aop</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql-connector.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <extensions>
+            <extension>
+                <groupId>org.apache.maven.wagon</groupId>
+                <artifactId>wagon-webdav</artifactId>
+                <version>1.0-beta-2</version>
+            </extension>
+        </extensions>
+
+        <pluginManagement/>
+
+        <plugins>
+            <!-- Disables the Maven surefire plugin for Grails applications, as we have our own test runner -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.16</version>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>surefire-it</id>
+                        <phase>integration-test</phase>
+                        <goals>
+                            <goal>test</goal>
+                        </goals>
+                        <configuration>
+                            <skip>false</skip>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-clean-plugin</artifactId>
+                <version>2.5</version>
+                <configuration>
+                    <filesets>
+                        <fileset>
+                            <directory>plugins</directory>
+                            <includes>
+                                <include>**/*</include>
+                            </includes>
+                            <followSymlinks>false</followSymlinks>
+                        </fileset>
+                    </filesets>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.grails</groupId>
+                <artifactId>grails-maven-plugin</artifactId>
+                <version>${grails.version}</version>
+                <configuration>
+                    <fork>true</fork>
+                </configuration>
+                <extensions>true</extensions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.4.2</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.9.1</version>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.1</version>
+            </plugin>
+
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>grails</id>
+            <name>grails</name>
+            <url>http://repo.grails.org/grails/core</url>
+        </repository>
+        <repository>
+            <id>grails-plugins</id>
+            <name>grails-plugins</name>
+            <url>http://repo.grails.org/grails/plugins</url>
+        </repository>
+
+        <repository>
+            <id>exe-cloudbees-release</id>
+            <name>exe-cloudbees-release</name>
+            <url>https://repository-exe.forge.cloudbees.com/release/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+        <repository>
+            <id>exe-cloudbees-snapshot</id>
+            <name>exe-cloudbees-snapshot</name>
+            <url>https://repository-exe.forge.cloudbees.com/snapshot/</url>
+            <releases>
+                <enabled>false</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <distributionManagement>
+        <downloadUrl>https://github.com/damienbeaufils/epn-pointeuse</downloadUrl>
+        <repository>
+            <id>exe-cloudbees-release</id>
+            <name>exe-cloudbees-release</name>
+            <url>dav:https://repository-exe.forge.cloudbees.com/release/</url>
+        </repository>
+        <snapshotRepository>
+            <id>exe-cloudbees-snapshot</id>
+            <name>exe-cloudbees-snapshot</name>
+            <url>dav:https://repository-exe.forge.cloudbees.com/snapshot/</url>
+        </snapshotRepository>
+        <site>
+            <id>exe-cloudbees-site</id>
+            <name>exe-cloudbees-site</name>
+            <url>dav:https://repository-exe.forge.cloudbees.com/release/sites/${project.artifactId}</url>
+        </site>
+    </distributionManagement>
+
+
+    <profiles>
+        <profile>
+            <id>tools</id>
+            <activation>
+                <property>
+                    <name>java.vendor</name>
+                    <value>Sun Microsystems Inc.</value>
+                </property>
+            </activation>
+            <dependencies>
+                <dependency>
+                    <groupId>com.sun</groupId>
+                    <artifactId>tools</artifactId>
+                    <version>${java.version}</version>
+                    <scope>system</scope>
+                    <systemPath>${java.home}/../lib/tools.jar</systemPath>
+                </dependency>
+            </dependencies>
+        </profile>
+
+        <profile>
+            <id>cloudbees</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <version>2.6</version>
+                        <executions>
+                            <execution>
+                                <id>copy-resources</id>
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <overwrite>true</overwrite>
+                                    <outputDirectory>${project.basedir}/grails-app/conf</outputDirectory>
+                                    <resources>
+                                        <resource>
+                                            <directory>${pointeuse.config.directory}</directory>
+                                            <filtering>false</filtering>
+                                            <includes>
+                                                <include>*.groovy</include>
+                                            </includes>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+</project>
