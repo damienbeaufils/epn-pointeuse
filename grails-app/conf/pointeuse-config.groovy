@@ -9,3 +9,9 @@ environments {
         }
     }
 }
+
+userWebService {
+    url = "https://myUserWebService?nom={name}"
+    username = "username"
+    password = "password"
+}
