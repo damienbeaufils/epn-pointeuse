@@ -1,5 +1,7 @@
 package org.csrelais59.epn.pointeuse
 
+import grails.converters.JSON
+
 class UserController {
 
     static defaultAction = "search"
@@ -14,6 +16,10 @@ class UserController {
             users = this.userWebService.search(searchedName)
         }
 
-        [foundUsers: users]
+        if (params.json) {
+            render users as JSON
+        } else {
+            [foundUsers: users]
+        }
     }
 }

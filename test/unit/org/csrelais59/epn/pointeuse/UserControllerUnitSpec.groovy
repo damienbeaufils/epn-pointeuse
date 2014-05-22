@@ -46,10 +46,10 @@ class UserControllerUnitSpec extends Specification {
         params.name = null
 
         when:
-        def result = controller.search()
+        def model = controller.search()
 
         then:
-        assertThat(result.foundUsers).isNull()
+        assertThat(model.foundUsers).isNull()
     }
 
     void "search should return found users from userWebService call"() {
@@ -60,9 +60,24 @@ class UserControllerUnitSpec extends Specification {
         mockedUserWebService.search(_) >> { [user1, user2] }
 
         when:
-        def result = controller.search()
+        def model = controller.search()
 
         then:
-        assertThat(result.foundUsers).containsExactly(user1, user2)
+        assertThat(model.foundUsers).containsExactly(user1, user2)
+    }
+
+    void "search should serialize users as json if request param json exists"() {
+        given:
+        def user1 = new User(id: 1, nom: "Man", prenom: "Iron")
+        def user2 = new User(id: 2, nom: "America", prenom: "Captain")
+        mockedUserWebService.search(_) >> { [user1, user2] }
+        params.name = 'test'
+        params.json = true
+
+        when:
+        controller.search()
+
+        then:
+        assertThat(response.text).isEqualTo('[{"id":1,"nom":"Man","prenom":"Iron"},{"id":2,"nom":"America","prenom":"Captain"}]')
     }
 }
