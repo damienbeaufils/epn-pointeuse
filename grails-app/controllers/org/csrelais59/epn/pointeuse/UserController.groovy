@@ -6,6 +6,7 @@ class UserController {
 
     static defaultAction = "search"
 
+    def grailsApplication
     def userWebService
 
     def search() {
@@ -20,6 +21,17 @@ class UserController {
             render users as JSON
         } else {
             [foundUsers: users]
+        }
+    }
+
+    def signIn() {
+        def userFullName = params.fullName
+
+        if (userFullName) {
+            new SignedUser(fullName: userFullName).save(flush: true)
+            render(view: 'signed', model: [fullName: userFullName, redirectionUrl: grailsApplication.config.signedUserRedirectionUrl])
+        } else {
+            redirect(action: 'search')
         }
     }
 }

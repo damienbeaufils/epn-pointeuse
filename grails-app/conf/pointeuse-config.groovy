@@ -15,3 +15,5 @@ userWebService {
     username = "username"
     password = "password"
 }
+
+signedUserRedirectionUrl = 'http://www.csrelais59.org/epn/'
