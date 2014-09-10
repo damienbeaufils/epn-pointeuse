@@ -8,14 +8,10 @@ class UserController {
 
     def grailsApplication
     def userWebService
+    def userSignInService
 
     def search() {
-        def users
-        def searchedName = params.name
-
-        if (searchedName) {
-            users = this.userWebService.search(searchedName)
-        }
+        def users = this.userWebService.search(params.name)
 
         if (params.json) {
             render users as JSON
@@ -27,11 +23,12 @@ class UserController {
     def signIn() {
         def userFullName = params.fullName
 
-        if (userFullName) {
-            new SignedUser(fullName: userFullName).save(flush: true)
+        if (this.userSignInService.checkAndSignUser(userFullName)) {
             render(view: 'signed', model: [fullName: userFullName, redirectionUrl: grailsApplication.config.signedUserRedirectionUrl])
         } else {
+            flash.message = "'${userFullName}' n'a pas été trouvé dans la liste des inscrits à l'EPN"
             redirect(action: 'search')
         }
     }
+
 }

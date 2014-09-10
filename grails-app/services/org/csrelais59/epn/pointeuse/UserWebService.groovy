@@ -35,9 +35,13 @@ class UserWebService {
         return new HttpComponentsClientHttpRequestFactory(httpClient)
     }
 
-    def search(name) {
-        def response = this.restTemplate.getForEntity(grailsApplication.config.userWebService.url, User[].class, name)
-        return response?.body
+    def User[] search(String name) {
+        def foundUsers = []
+        if (name?.length() > 2) {
+            def response = this.restTemplate.getForEntity(grailsApplication.config.userWebService.url, User[].class, name)
+            foundUsers = response?.body
+        }
+        return foundUsers
     }
 
 }

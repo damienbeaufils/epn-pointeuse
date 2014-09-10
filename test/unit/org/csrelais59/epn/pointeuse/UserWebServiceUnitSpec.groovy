@@ -74,6 +74,7 @@ class UserWebServiceUnitSpec extends Specification {
 
     void "search should use webservice url from config"() {
         given:
+        def name = 'MAN'
         def userWebServiceUrl = 'http://myUserWebService.mock?nom={name}'
         def mockedGrailsApplication = Mock(GrailsApplication.class)
         def config = new ConfigObject()
@@ -82,15 +83,18 @@ class UserWebServiceUnitSpec extends Specification {
         service.grailsApplication = mockedGrailsApplication
 
         when:
-        service.search()
+        service.search(name)
 
         then:
         1 * mockedRestTemplate.getForEntity(userWebServiceUrl, _, _)
     }
 
     void "search should be waiting an array of User from webservice"() {
+        given:
+        def name = 'MAN'
+
         when:
-        service.search()
+        service.search(name)
 
         then:
         1 * mockedRestTemplate.getForEntity(_, User[].class, _)
@@ -98,7 +102,7 @@ class UserWebServiceUnitSpec extends Specification {
 
     void "search should use call webservice with given name"() {
         given:
-        def name = "myName"
+        def name = 'MAN'
 
         when:
         service.search(name)
@@ -107,12 +111,13 @@ class UserWebServiceUnitSpec extends Specification {
         1 * mockedRestTemplate.getForEntity(_, _, name)
     }
 
-    void "search should return empty collection if webservice returns no users"() {
+    void "search should return an empty collection if webservice returns no users"() {
         given:
+        def name = 'MAN'
         mockedRestTemplate.getForEntity(_, _, _) >> { new ResponseEntity([], HttpStatus.OK) }
 
         when:
-        def result = service.search()
+        def result = service.search(name)
 
         then:
         assertThat(result).hasSize(0)
@@ -121,14 +126,39 @@ class UserWebServiceUnitSpec extends Specification {
 
     void "search should return users bind from webservice response"() {
         given:
+        def name = 'MAN'
         def user1 = new User(id: 1, nom: "Man", prenom: "Iron")
         def user2 = new User(id: 2, nom: "America", prenom: "Captain")
         mockedRestTemplate.getForEntity(_, _, _) >> { new ResponseEntity([user1, user2], HttpStatus.OK) }
 
         when:
-        def result = service.search()
+        def result = service.search(name)
 
         then:
         assertThat(result).containsExactly(user1, user2)
+    }
+
+    void "search should never call webservice and return an empty collection if name parameter is null"() {
+        given:
+        def name = null
+
+        when:
+        def result = service.search(name)
+
+        then:
+        0 * mockedRestTemplate.getForEntity(_, _, _)
+        assertThat(result).hasSize(0)
+    }
+
+    void "search should never call webservice and return an empty collection if name parameter length is less than 3 characters"() {
+        given:
+        def name = 'DB'
+
+        when:
+        def result = service.search(name)
+
+        then:
+        0 * mockedRestTemplate.getForEntity(_, _, _)
+        assertThat(result).hasSize(0)
     }
 }
