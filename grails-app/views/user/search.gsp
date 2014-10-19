@@ -35,7 +35,8 @@
     var users = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.obj.whitespace('nom'),
         queryTokenizer: Bloodhound.tokenizers.whitespace,
-        remote: $('form').data('search-url') + '&name=%QUERY'
+        remote: $('form').data('search-url') + '&name=%QUERY',
+        limit: 100
     });
 
     users.initialize();

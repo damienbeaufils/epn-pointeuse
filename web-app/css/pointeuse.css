@@ -2,6 +2,14 @@
     width: 100%;
 }
 
+.tt-dropdown-menu {
+    max-height: 300px;
+    overflow-y: auto;
+}
+.tt-dropdown-menu > div {
+    min-width: 500px;
+}
+
 .form-signin {
     padding: 15px;
     margin: 0 auto;
