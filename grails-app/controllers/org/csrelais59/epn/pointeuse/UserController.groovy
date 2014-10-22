@@ -4,20 +4,17 @@ import grails.converters.JSON
 
 class UserController {
 
-    static defaultAction = "search"
+    static defaultAction = "signInOrUp"
 
     def grailsApplication
     def userWebService
     def userSignInService
 
+    def signInOrUp() {}
+
     def search() {
         def users = this.userWebService.search(params.name)
-
-        if (params.json) {
-            render users as JSON
-        } else {
-            [foundUsers: users]
-        }
+        render users as JSON
     }
 
     def signIn() {
@@ -26,8 +23,8 @@ class UserController {
         if (this.userSignInService.checkAndSignUser(userFullName)) {
             render(view: 'signed', model: [fullName: userFullName, redirectionUrl: grailsApplication.config.signedUserRedirectionUrl])
         } else {
-            flash.message = "'${userFullName}' n'a pas été trouvé dans la liste des inscrits à l'EPN"
-            redirect(action: 'search')
+            flash.message = "'${userFullName}' n'a pas été trouvé dans la liste des inscrits à l'@nnexe"
+            redirect(action: 'signInOrUp')
         }
     }
 

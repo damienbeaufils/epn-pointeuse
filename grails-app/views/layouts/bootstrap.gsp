@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <g:layoutTitle/>
+    <title><g:layoutTitle default="L’@nnexe - Espace Numérique à Paris 12e" /></title>
     <r:layoutResources/>
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'vendor/typeaheadjs.css')}" type="text/css">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'pointeuse.css')}" type="text/css">

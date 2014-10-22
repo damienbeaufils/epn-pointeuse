@@ -1,3 +1,16 @@
+img {
+    max-height: 125px;
+}
+
+.container > .row {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.leads-x2 {
+    padding-top: 1.5em;
+}
+
 .twitter-typeahead {
     width: 100%;
 }
@@ -14,7 +27,6 @@
     padding: 15px;
     margin: 0 auto;
 }
-.form-signin .form-signin-heading,
 .form-signin .checkbox {
     margin-bottom: 10px;
 }

@@ -21,7 +21,7 @@
                 <g:each in="${signedUsers}" var="signedUser">
                     <tr>
                         <td>${signedUser.fullName}</td>
-                        <td><g:formatDate format="dd/MM/yyyy HH:mm:ss" timeZone="${TimeZone.getTimeZone("Europe/Paris")}" date="${signedUser.dateCreated}"/></td>
+                        <td><g:formatDate format="dd/MM/yyyy HH:mm:ss" timeZone="Europe/Paris" date="${signedUser.dateCreated}"/></td>
                     </tr>
                 </g:each>
             </tbody>

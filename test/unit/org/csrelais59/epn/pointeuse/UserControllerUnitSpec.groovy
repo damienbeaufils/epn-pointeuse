@@ -31,38 +31,11 @@ class UserControllerUnitSpec extends Specification {
         1 * mockedUserWebService.search(name)
     }
 
-    void "search should return null for found users if no name in request params"() {
-        given:
-        params.name = null
-
-        when:
-        def model = controller.search()
-
-        then:
-        assertThat(model.foundUsers).isNull()
-    }
-
-    void "search should return found users from userWebService call"() {
-        given:
-        params.name = 'test'
-        def user1 = new User(id: 1, nom: "Man", prenom: "Iron")
-        def user2 = new User(id: 2, nom: "America", prenom: "Captain")
-        mockedUserWebService.search(_) >> { [user1, user2] }
-
-        when:
-        def model = controller.search()
-
-        then:
-        assertThat(model.foundUsers).containsExactly(user1, user2)
-    }
-
-    void "search should serialize users as json if request param json exists"() {
+    void "search should serialize as json found users from userWebService call"() {
         given:
         def user1 = new User(id: 1, nom: "Man", prenom: "Iron")
         def user2 = new User(id: 2, nom: "America", prenom: "Captain")
         mockedUserWebService.search(_) >> { [user1, user2] }
-        params.name = 'test'
-        params.json = true
 
         when:
         controller.search()
@@ -124,7 +97,7 @@ class UserControllerUnitSpec extends Specification {
         assertThat(model.redirectionUrl).isEqualTo(redirectionUrl)
     }
 
-    void "signIn should redirect to search action if userSignInService call returned false"() {
+    void "signIn should redirect to signInOrUp action if userSignInService call returned false"() {
         given:
         mockedUserSignInService.checkAndSignUser(_) >> { false }
 
@@ -132,7 +105,7 @@ class UserControllerUnitSpec extends Specification {
         controller.signIn()
 
         then:
-        assertThat(response.redirectUrl).isEqualTo('/user/search')
+        assertThat(response.redirectUrl).isEqualTo('/user/signInOrUp')
     }
 
     void "signIn should set error flash message with fullName inside if userSignInService call returned false"() {
