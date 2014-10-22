@@ -80,6 +80,9 @@ grails.hibernate.cache.queries = false
 // avoid silent failure when saving a domain object
 grails.gorm.failOnError=true
 
+grails.plugin.databasemigration.updateOnStart = true
+grails.plugin.databasemigration.updateOnStartFileNames = ['changelog.groovy']
+
 environments {
     development {
         grails.logging.jul.usebridge = true

@@ -22,6 +22,7 @@
         <!-- Grails 2.3.8 == Groovy 2.1.9 -->
         <groovy.version>2.1.9</groovy.version>
         <!-- Grails plugins -->
+        <grails-plugin-database-migration.version>1.4.0</grails-plugin-database-migration.version>
         <grails-plugin-hibernate4.version>4.3.5.5</grails-plugin-hibernate4.version>
         <grails-plugin-jquery.version>1.11.1</grails-plugin-jquery.version>
         <grails-plugin-resources.version>1.2.13</grails-plugin-resources.version>
@@ -100,6 +101,14 @@
             <groupId>org.grails.plugins</groupId>
             <artifactId>resources</artifactId>
             <version>${grails-plugin-resources.version}</version>
+            <type>zip</type>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.grails.plugins</groupId>
+            <artifactId>database-migration</artifactId>
+            <version>${grails-plugin-database-migration.version}</version>
             <type>zip</type>
             <scope>runtime</scope>
         </dependency>
