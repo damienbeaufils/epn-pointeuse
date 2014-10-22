@@ -145,6 +145,6 @@ class UserControllerUnitSpec extends Specification {
         controller.signIn()
 
         then:
-        assertThat(flash.message).contains(userFullName)
+        assertThat(flash.message.toString()).contains(userFullName)
     }
 }

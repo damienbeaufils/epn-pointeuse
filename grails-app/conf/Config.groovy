@@ -29,6 +29,7 @@ grails.mime.types = [ // the first one is the default format
 
 // What URL patterns should be processed by the resources plugin
 grails.resources.adhoc.patterns = ['/images/*', '/css/*', '/js/*', '/plugins/*']
+grails.resources.adhoc.includes = ['/images/**', '/css/**', '/js/**', '/plugins/**']
 grails.resources.adhoc.excludes = ['**/WEB-INF/**','**/META-INF/**']
 
 // Legacy setting for codec used to encode data with ${}
