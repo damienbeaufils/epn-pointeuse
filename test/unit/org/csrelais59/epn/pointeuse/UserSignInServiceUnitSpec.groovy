@@ -66,7 +66,9 @@ class UserSignInServiceUnitSpec extends Specification {
         service.checkAndSignUser(fullName)
 
         then:
-        assertThat(SignedUser.findAll()).extracting('fullName').containsExactly(fullName)
+        def signedUsers = SignedUser.findAll()
+        assertThat(signedUsers).hasSize(1)
+        assertThat(signedUsers[0].fullName).isEqualTo(fullName)
     }
 
     void "checkAndSignUser should return false if no user fullName"() {
