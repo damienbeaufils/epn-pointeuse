@@ -33,7 +33,7 @@ class UserController {
         def newUser = new NewUser(params)
         if (newUser.validate()) {
             userSignUpService.signUpNewUser(newUser)
-            redirect(action: 'signed', params: [fullName: "${newUser.lastName} ${newUser.firstName}"])
+            redirect(action: 'signed', params: [fullName: "${newUser.lastName} ${newUser.firstName}", isNewUser: true])
         } else {
             flash.message = "Veuillez renseigner tous les champs du formulaire d'inscription correctement"
             render(view: 'signInOrUp', model: [newUser: newUser])
@@ -41,7 +41,7 @@ class UserController {
     }
 
     def signed() {
-        render(view: 'signed', model: [fullName: params.fullName, redirectionUrl: grailsApplication.config.signedUserRedirectionUrl])
+        render(view: 'signed', model: [fullName: params.fullName, isNewUser: params.isNewUser, redirectionUrl: grailsApplication.config.signedUserRedirectionUrl])
     }
 
 }

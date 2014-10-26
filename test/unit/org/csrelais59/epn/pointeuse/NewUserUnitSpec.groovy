@@ -13,7 +13,7 @@ class NewUserUnitSpec extends Specification {
     void "validation should pass if all attributes are correct"() {
         given:
         def newUser = new NewUser(
-                male: true,
+                title: NewUser.Title.MISTER,
                 birthYear: 1988,
                 firstName: 'Damien',
                 lastName: 'Beaufils',
@@ -30,17 +30,17 @@ class NewUserUnitSpec extends Specification {
         assertThat(isValid).isTrue()
     }
 
-    void "validation should fail if male is null"() {
+    void "validation should fail if title is null"() {
         given:
         def newUser = NewUser.buildWithoutSave()
-        newUser.male = null
+        newUser.title = null
 
         when:
         def valid = newUser.validate()
 
         then:
         assertThat(valid).isFalse()
-        assertThat(newUser.errors.hasFieldErrors('male')).isTrue()
+        assertThat(newUser.errors.hasFieldErrors('title')).isTrue()
     }
 
     void "validation should fail if birthYear is null"() {
@@ -210,5 +210,29 @@ class NewUserUnitSpec extends Specification {
         then:
         assertThat(valid).isFalse()
         assertThat(newUser.errors.hasFieldErrors('phoneNumber')).isTrue()
+    }
+
+    void "mister title id should be 'Monsieur'"() {
+        given:
+        def newUser = NewUser.buildWithoutSave()
+        newUser.title = NewUser.Title.MISTER
+
+        when:
+        def titleId = newUser.title.id
+
+        then:
+        assertThat(titleId).isEqualTo('Monsieur')
+    }
+
+    void "miss title id should be 'Madame'"() {
+        given:
+        def newUser = NewUser.buildWithoutSave()
+        newUser.title = NewUser.Title.MISS
+
+        when:
+        def titleId = newUser.title.id
+
+        then:
+        assertThat(titleId).isEqualTo('Madame')
     }
 }

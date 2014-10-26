@@ -148,6 +148,18 @@ class UserControllerUnitSpec extends Specification {
         assertThat(response.redirectedUrl).contains('fullName=Man+Iron')
     }
 
+    void "signUp should redirect with isNewUser in params"() {
+        given:
+        def validNewUser = NewUser.buildWithoutSave()
+        params << validNewUser.properties
+
+        when:
+        controller.signUp()
+
+        then:
+        assertThat(response.redirectedUrl).contains('isNewUser=true')
+    }
+
     void "signUp should set error flash message if new user built from request params is not valid"() {
         given:
         params.birthYear = 123456
@@ -217,5 +229,17 @@ class UserControllerUnitSpec extends Specification {
 
         then:
         assertThat(model.redirectionUrl).isEqualTo(redirectionUrl)
+    }
+
+    void "signed should add isNewUser from request params in model"() {
+        given:
+        def isNewUser = true
+        params.isNewUser = isNewUser
+
+        when:
+        controller.signed()
+
+        then:
+        assertThat(model.isNewUser).isEqualTo(isNewUser)
     }
 }

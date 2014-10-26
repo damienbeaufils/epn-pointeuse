@@ -1,6 +1,6 @@
 databaseChangeLog = {
 
-	changeSet(author: "generated", id: "1414252618303-1") {
+	changeSet(author: "generated", id: "1414341007516-1") {
 		createTable(tableName: "new_user") {
 			column(autoIncrement: "true", name: "id", type: "bigint") {
 				constraints(nullable: "false", primaryKey: "true", primaryKeyName: "new_userPK")
@@ -30,15 +30,15 @@ databaseChangeLog = {
 				constraints(nullable: "false")
 			}
 
-			column(name: "male", type: "boolean") {
-				constraints(nullable: "false")
-			}
-
 			column(name: "phone_number", type: "varchar(14)") {
 				constraints(nullable: "false")
 			}
 
 			column(name: "street", type: "varchar(255)") {
+				constraints(nullable: "false")
+			}
+
+			column(name: "title", type: "varchar(255)") {
 				constraints(nullable: "false")
 			}
 
@@ -48,7 +48,7 @@ databaseChangeLog = {
 		}
 	}
 
-	changeSet(author: "generated", id: "1414252618303-2") {
+	changeSet(author: "generated", id: "1414341007516-2") {
 		createTable(tableName: "signed_user") {
 			column(autoIncrement: "true", name: "id", type: "bigint") {
 				constraints(nullable: "false", primaryKey: "true", primaryKeyName: "signed_userPK")

@@ -26,6 +26,7 @@
         <grails-plugin-database-migration.version>1.4.0</grails-plugin-database-migration.version>
         <grails-plugin-hibernate4.version>4.3.5.5</grails-plugin-hibernate4.version>
         <grails-plugin-jquery.version>1.11.1</grails-plugin-jquery.version>
+        <grails-plugin-mail.version>1.0.7</grails-plugin-mail.version>
         <grails-plugin-resources.version>1.2.13</grails-plugin-resources.version>
         <grails-plugin-tomcat.version>7.0.55</grails-plugin-tomcat.version>
         <grails-plugin-twitter-bootstrap.version>3.2.1</grails-plugin-twitter-bootstrap.version>
@@ -120,6 +121,14 @@
             <version>${grails-plugin-build-test-data.version}</version>
             <type>zip</type>
             <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.grails.plugins</groupId>
+            <artifactId>mail</artifactId>
+            <version>${grails-plugin-mail.version}</version>
+            <type>zip</type>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>

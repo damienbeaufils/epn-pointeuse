@@ -12,6 +12,7 @@
         <div class="col-md-4">
             <img src="${resource(dir: 'images', file: 'acces-poste.png')}" alt="Accès au poste"/>
         </div>
+
         <div class="col-md-8 text-left">
             <h2>
                 Bonjour et bienvenue à l'@nnexe
@@ -32,10 +33,13 @@
     <div class="row">
         <div class="col-md-6">
             <img src="${resource(dir: 'images', file: 'cle-acces.png')}" alt=""/>
-            <g:form class="form-signin input-lg" role="form" action="signIn" data-search-url="${createLink(action: 'search')}">
+            <g:form class="form-signin input-lg" role="form" action="signIn"
+                    data-search-url="${createLink(action: 'search')}">
                 <h3 class="alert alert-success">Inscrit(e) à l'@nnexe ?</h3>
+
                 <div class="form-group text-left">
-                    <g:textField name="fullName" class="form-control" placeholder="Votre nom" required="required" autofocus="autofocus"/>
+                    <g:textField name="fullName" class="form-control" placeholder="Votre nom" required="required"
+                                 autofocus="autofocus"/>
                 </div>
                 <g:submitButton name="submit" class="btn btn-lg btn-primary btn-block" value="M'identifier"/>
             </g:form>
@@ -46,30 +50,47 @@
             <img src="${resource(dir: 'images', file: 'inscription.png')}" alt=""/>
             <g:form class="form-signin" role="form" action="signUp">
                 <h3 class="alert alert-info">1er accès ? Inscrivez-vous !</h3>
-                <div class="form-group pull-right ${hasErrors(bean:newUser,field:'birthYear','has-error')}">
-                    <g:field type="number" name="birthYear" class="form-control" placeholder="Année de naissance" required="required" maxlength="4" value="${fieldValue(bean: newUser, field:'birthYear')}"/>
+
+                <div class="form-group pull-right ${hasErrors(bean: newUser, field: 'birthYear', 'has-error')}">
+                    <g:field type="number" name="birthYear" class="form-control" placeholder="Année de naissance"
+                             required="required" maxlength="4"
+                             value="${fieldValue(bean: newUser, field: 'birthYear')}"/>
                 </div>
-                <div class="form-group input-lg ${hasErrors(bean:newUser,field:'male','has-error')}">
-                    <g:radioGroup name="male" labels="['Monsieur','Madame']" values="['true','false']" required="required" value="${fieldValue(bean: newUser, field:'male')}">
+
+                <div class="form-group input-lg ${hasErrors(bean: newUser, field: 'title', 'has-error')}">
+                    <g:radioGroup name="title" values="${org.csrelais59.epn.pointeuse.NewUser.Title.values()}"
+                                  labels="${org.csrelais59.epn.pointeuse.NewUser.Title.values()*.id}"
+                                  required="required" value="${fieldValue(bean: newUser, field: 'title')}">
                         <label class="radio-inline">
                             ${it.radio} ${it.label}
                         </label>
                     </g:radioGroup>
                 </div>
-                <div class="form-group ${hasErrors(bean:newUser,field:'firstName','has-error') || hasErrors(bean:newUser,field:'lastName','has-error')}">
-                    <g:textField name="firstName" class="form-control" placeholder="Prénom" required="required" value="${fieldValue(bean: newUser, field:'firstName')}"/>
-                    <g:textField name="lastName" class="form-control" placeholder="Nom" required="required" value="${fieldValue(bean: newUser, field:'lastName')}"/>
+
+                <div class="form-group ${hasErrors(bean: newUser, field: 'firstName', 'has-error')} ${hasErrors(bean: newUser, field: 'lastName', 'has-error')}">
+                    <g:textField name="firstName" class="form-control" placeholder="Prénom" required="required"
+                                 value="${fieldValue(bean: newUser, field: 'firstName')}"/>
+                    <g:textField name="lastName" class="form-control" placeholder="Nom" required="required"
+                                 value="${fieldValue(bean: newUser, field: 'lastName')}"/>
                 </div>
-                <div class="form-group text-left ${hasErrors(bean:newUser,field:'street','has-error') || hasErrors(bean:newUser,field:'zipCode','has-error') || hasErrors(bean:newUser,field:'city','has-error')}}">
+
+                <div class="form-group text-left ${hasErrors(bean: newUser, field: 'street', 'has-error')} ${hasErrors(bean: newUser, field: 'zipCode', 'has-error')} ${hasErrors(bean: newUser, field: 'city', 'has-error')}">
                     <label>Adresse</label>
-                    <g:textField name="street" class="form-control" placeholder="Rue" required="required" value="${fieldValue(bean: newUser, field:'street')}"/>
+                    <g:textField name="street" class="form-control" placeholder="Rue" required="required"
+                                 value="${fieldValue(bean: newUser, field: 'street')}"/>
                     <div class="form-inline">
-                        <g:textField name="zipCode" class="form-control" placeholder="Code postal" required="required" pattern="[0-9]{5}" minlength="5" maxlength="5" value="${fieldValue(bean: newUser, field:'zipCode')}"/>
-                        <g:textField name="city" class="form-control" placeholder="Ville" required="required" value="${fieldValue(bean: newUser, field:'city')}"/>
+                        <g:textField name="zipCode" class="form-control" placeholder="Code postal" required="required"
+                                     pattern="[0-9]{5}" minlength="5" maxlength="5"
+                                     value="${fieldValue(bean: newUser, field: 'zipCode')}"/>
+                        <g:textField name="city" class="form-control" placeholder="Ville" required="required"
+                                     value="${fieldValue(bean: newUser, field: 'city')}"/>
                     </div>
                 </div>
-                <div class="form-group ${hasErrors(bean:newUser,field:'phoneNumber','has-error')}">
-                    <g:textField name="phoneNumber" class="form-control" placeholder="Téléphone" required="required" pattern="[0-9]{10,14}" minlength="10" maxlength="14" value="${fieldValue(bean: newUser, field:'phoneNumber')}"/>
+
+                <div class="form-group ${hasErrors(bean: newUser, field: 'phoneNumber', 'has-error')}">
+                    <g:textField name="phoneNumber" class="form-control" placeholder="Téléphone" required="required"
+                                 pattern="[0-9]{10,14}" minlength="10" maxlength="14"
+                                 value="${fieldValue(bean: newUser, field: 'phoneNumber')}"/>
                 </div>
                 <g:submitButton name="submit" class="btn btn-lg btn-primary btn-block" value="Valider"/>
             </g:form>
@@ -79,7 +100,7 @@
 
 <g:javascript>
 
-    $('input[name="fullName"]').on('keyup', function(event) {
+    $('input[name="fullName"]').on('keyup', function (event) {
         var input = $(event.target);
         input.val(input.val().toUpperCase());
     });
@@ -94,16 +115,16 @@
     users.initialize();
 
     $('input[name="fullName"]').typeahead(
-        {
-            hint: true,
-            highlight: true,
-            minLength: 3
-        }, {
-            displayKey: function (user) {
-                return user.nom + ' ' + user.prenom
-            },
-            source: users.ttAdapter()
-        }
+            {
+                hint: true,
+                highlight: true,
+                minLength: 3
+            }, {
+                displayKey: function (user) {
+                    return user.nom + ' ' + user.prenom
+                },
+                source: users.ttAdapter()
+            }
     );
 </g:javascript>
 </body>

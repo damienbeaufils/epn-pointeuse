@@ -3,11 +3,11 @@ package org.csrelais59.epn.pointeuse
 class NewUser {
 
     static final String[] FIELDS_TO_USE_FOR_COMPARISON = [
-            'male', 'birthYear', 'firstName', 'lastName', 'street', 'zipCode', 'city', 'phoneNumber'
+            'title', 'birthYear', 'firstName', 'lastName', 'street', 'zipCode', 'city', 'phoneNumber'
     ]
 
     static constraints = {
-        male nullable: false
+        title nullable: false
         birthYear nullable: false, min: 1920, max: 2020
         firstName blank: false
         lastName blank: false
@@ -19,7 +19,7 @@ class NewUser {
 
     Date dateCreated
 
-    Boolean male
+    Title title
 
     Integer birthYear
 
@@ -34,5 +34,16 @@ class NewUser {
     String city
 
     String phoneNumber
+
+    enum Title {
+        MISTER('Monsieur'),
+        MISS('Madame')
+
+        String id
+
+        Title(String id) {
+            this.id = id
+        }
+    }
 
 }
