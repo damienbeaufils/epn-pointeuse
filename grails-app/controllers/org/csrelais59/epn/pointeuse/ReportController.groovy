@@ -2,11 +2,13 @@ package org.csrelais59.epn.pointeuse
 
 class ReportController {
 
-    static defaultAction = "list"
+    static defaultAction = "signedUsers"
 
-    def list() {
+    def signedUsers() {
+        [signedUsers: SignedUser.findAll()]
+    }
 
-        [signedUsers : SignedUser.findAll()]
-
+    def newUsers() {
+        [newUsers: NewUser.findAll()]
     }
 }
