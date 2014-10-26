@@ -36,6 +36,7 @@
             <g:form class="form-signin input-lg" role="form" action="signIn"
                     data-search-url="${createLink(action: 'search')}">
                 <h3 class="alert alert-success">Inscrit(e) à l'@nnexe ?</h3>
+                <span class="glyphicon glyphicon-arrow-down green"></span>
 
                 <div class="form-group text-left">
                     <g:textField name="fullName" class="form-control" placeholder="Votre nom" required="required"
@@ -50,6 +51,7 @@
             <img src="${resource(dir: 'images', file: 'inscription.png')}" alt=""/>
             <g:form class="form-signin" role="form" action="signUp">
                 <h3 class="alert alert-info">1er accès ? Inscrivez-vous !</h3>
+                <span class="glyphicon glyphicon-arrow-down blue"></span>
 
                 <div class="form-group pull-right ${hasErrors(bean: newUser, field: 'birthYear', 'has-error')}">
                     <g:field type="number" name="birthYear" class="form-control" placeholder="Année de naissance"

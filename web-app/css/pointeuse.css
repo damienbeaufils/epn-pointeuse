@@ -11,6 +11,21 @@ img {
     padding-top: 1.5em;
 }
 
+.glyphicon-arrow-down {
+    font-size: 30px;
+    margin-bottom: 10px;
+    margin-top: -10px;
+    display: block;
+}
+
+.glyphicon-arrow-down.green {
+    color: #3c763d;
+}
+
+.glyphicon-arrow-down.blue {
+    color: #31708f;
+}
+
 .twitter-typeahead {
     width: 100%;
 }
