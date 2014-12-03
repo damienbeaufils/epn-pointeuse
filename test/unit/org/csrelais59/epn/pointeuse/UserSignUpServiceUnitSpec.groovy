@@ -79,7 +79,7 @@ class UserSignUpServiceUnitSpec extends Specification {
         given:
         def now = new Date()
         def nowAsString = now.format('dd/MM/yyyy à HH:mm:ss', TimeZone.getTimeZone('Europe/Paris'))
-        newUser = new NewUser(
+        newUser = NewUser.buildWithoutSave(
                 title: NewUser.Title.MISTER,
                 birthYear: 1988,
                 firstName: 'Damien',
