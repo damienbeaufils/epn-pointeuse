@@ -80,7 +80,7 @@
 </div>
 
 <g:javascript>
-    var redirectionTimeout = 5000;
+    var redirectionTimeout = 10000;
     var progressBarSplit = 5;
 
     window.setTimeout(function() {
