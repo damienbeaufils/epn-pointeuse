@@ -1,10 +1,12 @@
 package org.csrelais59.epn.pointeuse
 
-import grails.converters.JSON
+import com.fasterxml.jackson.databind.ObjectMapper
 
 class UserController {
 
     static defaultAction = "signInOrUp"
+
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper()
 
     def grailsApplication
     def userWebService
@@ -15,7 +17,7 @@ class UserController {
 
     def search() {
         def foundUsers = this.userWebService.search(params.name) ?: []
-        render foundUsers as JSON
+        render(text: OBJECT_MAPPER.writeValueAsString(foundUsers))
     }
 
     def signIn() {
