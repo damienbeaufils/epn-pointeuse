@@ -264,48 +264,24 @@
         </repository>
 
         <repository>
-            <id>exe-cloudbees-release</id>
-            <name>exe-cloudbees-release</name>
-            <url>https://repository-exe.forge.cloudbees.com/release/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </repository>
-        <repository>
-            <id>exe-cloudbees-snapshot</id>
-            <name>exe-cloudbees-snapshot</name>
-            <url>https://repository-exe.forge.cloudbees.com/snapshot/</url>
-            <releases>
-                <enabled>false</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
+            <id>releases</id>
+            <name>Nexus releases repository</name>
+            <url>http://localhost:8081/nexus/content/repositories/releases</url>
         </repository>
     </repositories>
 
     <distributionManagement>
-        <downloadUrl>https://github.com/damienbeaufils/epn-pointeuse</downloadUrl>
         <repository>
-            <id>exe-cloudbees-release</id>
-            <name>exe-cloudbees-release</name>
-            <url>dav:https://repository-exe.forge.cloudbees.com/release/</url>
+            <id>releases</id>
+            <name>Nexus releases repository</name>
+            <url>http://localhost:8081/nexus/content/repositories/releases</url>
         </repository>
         <snapshotRepository>
-            <id>exe-cloudbees-snapshot</id>
-            <name>exe-cloudbees-snapshot</name>
-            <url>dav:https://repository-exe.forge.cloudbees.com/snapshot/</url>
+            <id>snapshots</id>
+            <name>Nexus snapshots repository</name>
+            <url>http://localhost:8081/nexus/content/repositories/snapshots</url>
         </snapshotRepository>
-        <site>
-            <id>exe-cloudbees-site</id>
-            <name>exe-cloudbees-site</name>
-            <url>dav:https://repository-exe.forge.cloudbees.com/release/sites/${project.artifactId}</url>
-        </site>
     </distributionManagement>
-
 
     <profiles>
         <profile>
@@ -328,7 +304,7 @@
         </profile>
 
         <profile>
-            <id>cloudbees</id>
+            <id>jenkins</id>
             <build>
                 <plugins>
                     <plugin>
