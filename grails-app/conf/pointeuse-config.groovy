@@ -10,6 +10,19 @@ environments {
     }
 }
 
+pointeuse {
+    googleAnalytics {
+        id = 'UA-XXXXXXXX-Y'
+    }
+    newUserMailRecipient = 'some@email.com'
+    signedUserRedirectionUrl = 'http://www.csrelais59.org/epn/'
+    userWebService {
+        url = "https://myUserWebService?nom={name}"
+        username = "username"
+        password = "password"
+    }
+}
+
 grails {
     mail {
         // see mail Grails plugin configuration (http://grails.org/plugin/mail)
@@ -23,13 +36,4 @@ grails {
                  "mail.smtp.socketFactory.fallback": "false"]
     }
 }
-
-userWebService {
-    url = "https://myUserWebService?nom={name}"
-    username = "username"
-    password = "password"
-}
-
-signedUserRedirectionUrl = 'http://www.csrelais59.org/epn/'
-
-newUserMailRecipient = 'damien.beaufils@gmail.com'
+grails.mail.default.from="youracount@gmail.com"

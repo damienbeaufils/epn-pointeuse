@@ -19,7 +19,7 @@ class UserWebService {
 
     @PostConstruct
     private void initRestTemplate() {
-        def userWebServiceConfig = grailsApplication.config.userWebService
+        def userWebServiceConfig = grailsApplication.config.pointeuse.userWebService
         def clientHttpRequestFactory = this.createBasicAuthenticationHttpRequestFactory(userWebServiceConfig.username, userWebServiceConfig.password)
         restTemplate = new RestTemplate(clientHttpRequestFactory)
     }
@@ -38,7 +38,7 @@ class UserWebService {
     def User[] search(String name) {
         def foundUsers = []
         if (name?.length() > 2) {
-            def response = this.restTemplate.getForEntity(grailsApplication.config.userWebService.url, User[].class, name)
+            def response = this.restTemplate.getForEntity(grailsApplication.config.pointeuse.userWebService.url, User[].class, name)
             foundUsers = response?.body
         }
         return foundUsers

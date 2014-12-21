@@ -56,8 +56,8 @@ class UserWebServiceUnitSpec extends Specification {
         def password = 'myPassword'
         def mockedGrailsApplication = Mock(GrailsApplication.class)
         def config = new ConfigObject()
-        config.userWebService.username = username
-        config.userWebService.password = password
+        config.pointeuse.userWebService.username = username
+        config.pointeuse.userWebService.password = password
         mockedGrailsApplication.config >> { config }
         service.grailsApplication = mockedGrailsApplication
 
@@ -78,7 +78,7 @@ class UserWebServiceUnitSpec extends Specification {
         def userWebServiceUrl = 'http://myUserWebService.mock?nom={name}'
         def mockedGrailsApplication = Mock(GrailsApplication.class)
         def config = new ConfigObject()
-        config.userWebService.url = userWebServiceUrl
+        config.pointeuse.userWebService.url = userWebServiceUrl
         mockedGrailsApplication.config >> { config }
         service.grailsApplication = mockedGrailsApplication
 

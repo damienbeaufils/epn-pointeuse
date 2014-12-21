@@ -38,7 +38,7 @@ class UserSignUpServiceUnitSpec extends Specification {
         def newUserMailRecipient = 'tony@starkindustries.com'
         def mockedGrailsApplication = Mock(GrailsApplication.class)
         def config = new ConfigObject()
-        config.newUserMailRecipient = newUserMailRecipient
+        config.pointeuse.newUserMailRecipient = newUserMailRecipient
         mockedGrailsApplication.config >> { config }
         service.grailsApplication = mockedGrailsApplication
 

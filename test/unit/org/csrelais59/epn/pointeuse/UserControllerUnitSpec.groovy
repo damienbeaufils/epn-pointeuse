@@ -220,7 +220,7 @@ class UserControllerUnitSpec extends Specification {
         def redirectionUrl = 'http://www.csrelais59.org/epn/'
         def mockedGrailsApplication = Mock(GrailsApplication.class)
         def config = new ConfigObject()
-        config.signedUserRedirectionUrl = redirectionUrl
+        config.pointeuse.signedUserRedirectionUrl = redirectionUrl
         mockedGrailsApplication.config >> { config }
         controller.grailsApplication = mockedGrailsApplication
 

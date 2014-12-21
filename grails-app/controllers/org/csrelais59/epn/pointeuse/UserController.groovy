@@ -43,7 +43,7 @@ class UserController {
     }
 
     def signed() {
-        render(view: 'signed', model: [fullName: params.fullName, isNewUser: params.isNewUser, redirectionUrl: grailsApplication.config.signedUserRedirectionUrl])
+        render(view: 'signed', model: [fullName: params.fullName, isNewUser: params.isNewUser, redirectionUrl: grailsApplication.config.pointeuse.signedUserRedirectionUrl])
     }
 
 }

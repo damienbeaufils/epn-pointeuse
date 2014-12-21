@@ -11,7 +11,7 @@ class UserSignUpService {
     def void signUpNewUser(NewUser newUser) {
         newUser.save(flush: true)
 
-        sendMailWithNewUserData(grailsApplication.config.newUserMailRecipient, newUser)
+        sendMailWithNewUserData(grailsApplication.config.pointeuse.newUserMailRecipient, newUser)
     }
 
     private def sendMailWithNewUserData(String newUserMailRecipient, NewUser newUser) {
