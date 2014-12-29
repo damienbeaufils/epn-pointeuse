@@ -35,10 +35,10 @@ class UserSignUpServiceUnitSpec extends Specification {
 
     void "signUpNewUser should send mail to recipient address from configuration"() {
         given:
-        def newUserMailRecipient = 'tony@starkindustries.com'
+        def newUserMailRecipients = ['tony@starkindustries.com', 'ironman@starkindustries.com']
         def mockedGrailsApplication = Mock(GrailsApplication.class)
         def config = new ConfigObject()
-        config.pointeuse.newUserMailRecipient = newUserMailRecipient
+        config.pointeuse.newUserMailRecipients = newUserMailRecipients
         mockedGrailsApplication.config >> { config }
         service.grailsApplication = mockedGrailsApplication
 
@@ -48,8 +48,8 @@ class UserSignUpServiceUnitSpec extends Specification {
         then:
         1 * mockedMailService.sendMail(_ as Closure) >> { arguments ->
             def callable = mockSendMailClosure(arguments[0])
-            callable.metaClass.to { String to ->
-                assertThat(to).isEqualTo(newUserMailRecipient)
+            callable.metaClass.to { String[] to ->
+                assertThat(to).containsExactly(newUserMailRecipients.toArray(new String[0]))
                 return
             }
             callable.call()
@@ -145,7 +145,7 @@ class UserSignUpServiceUnitSpec extends Specification {
         callable.metaClass.async { Boolean async -> return }
         callable.metaClass.subject { String subject -> return }
         callable.metaClass.html { String html -> return }
-        callable.metaClass.to { String to -> return }
+        callable.metaClass.to { String[] to -> return }
         callable.resolveStrategy = Closure.TO_SELF
         callable
     }

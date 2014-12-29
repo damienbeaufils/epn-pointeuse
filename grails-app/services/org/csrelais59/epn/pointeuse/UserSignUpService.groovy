@@ -11,15 +11,15 @@ class UserSignUpService {
     def void signUpNewUser(NewUser newUser) {
         newUser.save(flush: true)
 
-        sendMailWithNewUserData(grailsApplication.config.pointeuse.newUserMailRecipient, newUser)
+        sendMailWithNewUserData(grailsApplication.config.pointeuse.newUserMailRecipients as String[], newUser)
     }
 
-    private def sendMailWithNewUserData(String newUserMailRecipient, NewUser newUser) {
+    private def sendMailWithNewUserData(String[] newUserMailRecipients, NewUser newUser) {
         String mailSubject = "[Pointeuse] Demande d'inscription : ${newUser.lastName} ${newUser.firstName}"
         String mailHtmlBody = buildHtmlBody(newUser)
         mailService.sendMail {
             async true
-            to newUserMailRecipient
+            to newUserMailRecipients
             subject mailSubject
             html mailHtmlBody
         }

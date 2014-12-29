@@ -14,7 +14,7 @@ pointeuse {
     googleAnalytics {
         id = 'UA-XXXXXXXX-Y'
     }
-    newUserMailRecipient = 'some@email.com'
+    newUserMailRecipients = ['some@email.com', 'another@email.com']
     signedUserRedirectionUrl = 'http://www.csrelais59.org/epn/'
     userWebService {
         url = "https://myUserWebService?nom={name}"
