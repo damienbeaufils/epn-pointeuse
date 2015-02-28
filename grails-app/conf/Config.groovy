@@ -30,14 +30,16 @@ grails.mime.types = [ // the first one is the default format
 // What URL patterns should be processed by the resources plugin
 grails.resources.adhoc.patterns = ['/images/*', '/css/*', '/js/*', '/plugins/*']
 grails.resources.adhoc.includes = ['/images/**', '/css/**', '/js/**', '/plugins/**']
-grails.resources.adhoc.excludes = ['**/WEB-INF/**','**/META-INF/**']
+// uri-to-url resolution cache timeout in milliseconds
+// 0 == caching disabled , -1 == no timeout
+grails.resources.uriToUrlCacheTimeout = 30000
 
 // Legacy setting for codec used to encode data with ${}
 grails.views.default.codec = "html"
 
 // The default scope for controllers. May be prototype, session or singleton.
 // If unspecified, controllers are prototype scoped.
-grails.controllers.defaultScope = 'singleton'
+grails.controllers.defaultScope = 'prototype'
 
 // GSP settings
 grails {
@@ -57,7 +59,6 @@ grails {
     }
 }
 
- 
 grails.converters.encoding = "UTF-8"
 // scaffolding templates configuration
 grails.scaffolding.templates.domainSuffix = 'Instance'
@@ -77,6 +78,12 @@ grails.exceptionresolver.params.exclude = ['password']
 // configure auto-caching of queries by default (if false you can cache individual queries with 'cache: true')
 grails.hibernate.cache.queries = false
 
+// configure passing transaction's read-only attribute to Hibernate session, queries and criterias
+// set "singleSession = false" OSIV mode in hibernate configuration after enabling
+grails.hibernate.pass.readonly = false
+// configure passing read-only to OSIV session by default, requires "singleSession = false" OSIV mode
+grails.hibernate.osiv.readonly = false
+
 // avoid silent failure when saving a domain object
 grails.gorm.failOnError=true
 
@@ -94,7 +101,7 @@ environments {
 }
 
 // log4j configuration
-log4j = {
+log4j.main = {
     // Example of changing the log pattern for the default console appender:
     //
     //appenders {
