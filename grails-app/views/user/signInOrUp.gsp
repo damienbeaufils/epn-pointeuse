@@ -36,10 +36,12 @@
             <g:form class="form-signin input-lg" role="form" action="signIn"
                     data-search-url="${createLink(action: 'search')}">
                 <h3 class="alert alert-success">Inscrit(e) à l'@nnexe ?</h3>
+                <h5 class="text-danger">Tapez les 4 premières lettres de votre nom de famille.
+                Attendez un instant et choisissez-le dans la liste. Puis confirmez avec le bouton "M'identifier".</h5>
                 <span class="glyphicon glyphicon-arrow-down green"></span>
 
                 <div class="form-group text-left">
-                    <g:textField name="fullName" class="form-control" placeholder="Votre nom" required="required"
+                    <g:textField name="fullName" class="form-control" placeholder="Votre nom de famille" required="required"
                                  autofocus="autofocus"/>
                 </div>
                 <g:submitButton name="submit" class="btn btn-lg btn-primary btn-block" value="M'identifier"/>
@@ -51,6 +53,7 @@
             <img src="${resource(dir: 'images', file: 'inscription.png')}" alt=""/>
             <g:form class="form-signin" role="form" action="signUp">
                 <h3 class="alert alert-info">1er accès ? Inscrivez-vous !</h3>
+                <h5 class="text-danger">TOUS les champs sont OBLIGATOIRES</h5>
                 <span class="glyphicon glyphicon-arrow-down blue"></span>
 
                 <div class="form-group pull-right ${hasErrors(bean: newUser, field: 'birthYear', 'has-error')}">
