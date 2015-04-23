@@ -38,7 +38,7 @@ class UserSignInServiceUnitSpec extends Specification {
         service.checkAndSignUser(fullName)
 
         then:
-        1 * mockedUserWebService.search('MaN')
+        (1.._) * mockedUserWebService.search('MaN')
     }
 
     void "checkAndSignUser should return true if user found by userWebService"() {
@@ -80,6 +80,7 @@ class UserSignInServiceUnitSpec extends Specification {
 
         then:
         assertThat(result).isFalse()
+        0 * mockedUserWebService.search(_)
     }
 
     void "checkAndSignUser should return false if fullName does not match with userWebService response"() {
@@ -92,5 +93,17 @@ class UserSignInServiceUnitSpec extends Specification {
 
         then:
         assertThat(result).isFalse()
+    }
+
+    void "checkAndSignUser should return true when user have a compound last name"() {
+        given:
+        def fullName = 'De Backer Daniel'
+        mockedUserWebService.search(_) >> { [new User(id: 3, nom: "De Backer", prenom: "Daniel")] }
+
+        when:
+        def result = service.checkAndSignUser(fullName)
+
+        then:
+        assertThat(result).isTrue()
     }
 }
