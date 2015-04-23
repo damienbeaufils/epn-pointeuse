@@ -10,7 +10,7 @@ class UserSignInService {
 
     def checkAndSignUser(String fullName) {
         if (isValidUser(fullName, false) || isValidUser(fullName, true)) {
-            new SignedUser(fullName: fullName).save(flush: true)
+            new SignedUser(fullName: fullName.toUpperCase()).save(flush: true)
             return true
         }
         return false

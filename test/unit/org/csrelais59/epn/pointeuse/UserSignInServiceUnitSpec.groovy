@@ -55,7 +55,7 @@ class UserSignInServiceUnitSpec extends Specification {
         assertThat(result).isTrue()
     }
 
-    void "checkAndSignUser should save new user using fullName if user found by userWebService"() {
+    void "checkAndSignUser should save new user using uppercase fullName if user found by userWebService"() {
         given:
         def fullName = 'MaN IroN'
         mockedUserWebService.search(_) >> {
@@ -68,7 +68,7 @@ class UserSignInServiceUnitSpec extends Specification {
         then:
         def signedUsers = SignedUser.findAll()
         assertThat(signedUsers).hasSize(1)
-        assertThat(signedUsers[0].fullName).isEqualTo(fullName)
+        assertThat(signedUsers[0].fullName).isEqualTo('MAN IRON')
     }
 
     void "checkAndSignUser should return false if no user fullName"() {
