@@ -1,5 +1,6 @@
 package org.csrelais59.epn.pointeuse
 
+import grails.core.GrailsApplication
 import org.apache.http.auth.AuthScope
 import org.apache.http.auth.UsernamePasswordCredentials
 import org.apache.http.impl.client.BasicCredentialsProvider
@@ -13,7 +14,7 @@ import javax.annotation.PostConstruct
 
 class UserWebService {
 
-    def grailsApplication
+    GrailsApplication grailsApplication
 
     private RestTemplate restTemplate;
 

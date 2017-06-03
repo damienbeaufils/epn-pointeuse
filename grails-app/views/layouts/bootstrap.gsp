@@ -2,10 +2,11 @@
 <html lang="fr">
 <head>
     <title><g:layoutTitle default="L’@nnexe - Espace Numérique à Paris 12e" /></title>
-    <r:layoutResources/>
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'vendor/typeaheadjs.css')}" type="text/css">
-    <link rel="stylesheet" href="${resource(dir: 'css', file: 'pointeuse.css')}" type="text/css">
-    <g:javascript src="vendor/typeahead.bundle.min.js"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+    <asset:stylesheet src="vendor/typeaheadjs.css"/>
+    <asset:stylesheet src="pointeuse.css"/>
+    <asset:javascript src="jquery-2.2.0.min.js"/>
+    <asset:javascript src="vendor/typeahead.bundle.min.js"/>
 </head>
 
 <body>
@@ -20,7 +21,5 @@
         ga('create', '${grailsApplication.config.pointeuse.googleAnalytics.id}', 'auto');
         ga('send', 'pageview');
     </g:javascript>
-
-    <r:layoutResources/>
 </body>
 </html>

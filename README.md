@@ -1,6 +1,11 @@
 epn-pointeuse
 =============
 
+Continuous Integration
+---
+[![Build Status](https://travis-ci.org/damienbeaufils/epn-pointeuse.svg)](https://travis-ci.org/damienbeaufils/epn-pointeuse)
+https://travis-ci.org/damienbeaufils/epn-pointeuse
+
 Functional description
 ---
 
@@ -12,13 +17,32 @@ Functional description
 Technical information
 ---
 
-* Maven 3
-* Grails 2.3
-* Java 7
+* Grails 3.2
+* Java 8
 * Bootstrap 3
+
+Build and test
+---
+
+```
+./grailsw clean && ./grailsw test-app
+```
+
+Run
+---
+
+```
+./grailsw clean && ./grailsw run-app
+```
+
+Package
+---
+
+```
+./grailsw clean && ./grailsw package
+```
 
 License
 ---
 
-epn-pointeuse is licensed under the terms of the [Apache License, Version 2.0][Apache License, Version 2.0].
-[Apache License, Version 2.0]: http://www.apache.org/licenses/LICENSE-2.0.html
+epn-pointeuse is licensed under the terms of the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html).

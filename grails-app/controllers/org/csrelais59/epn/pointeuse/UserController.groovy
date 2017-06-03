@@ -1,6 +1,7 @@
 package org.csrelais59.epn.pointeuse
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import grails.core.GrailsApplication
 
 class UserController {
 
@@ -8,7 +9,7 @@ class UserController {
 
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper()
 
-    def grailsApplication
+    GrailsApplication grailsApplication
     def userWebService
     def userSignInService
     def userSignUpService

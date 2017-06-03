@@ -1,11 +1,12 @@
 package org.csrelais59.epn.pointeuse
 
+import grails.core.GrailsApplication
 import grails.transaction.Transactional
 
 @Transactional
 class UserSignUpService {
 
-    def grailsApplication
+    GrailsApplication grailsApplication
     def mailService
 
     def void signUpNewUser(NewUser newUser) {
